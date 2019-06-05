@@ -14,7 +14,15 @@ Der er altså et ujævnt forhold mellem Arduinoens tid den faktiske tid. Et abst
 ![alt text](https://github.com/DDlabAU/Timing-i-Arduino/blob/master/tid/ArduinoTid.gif "Arduino Tid") ![alt text](https://github.com/DDlabAU/Timing-i-Arduino/blob/master/tid/RigtigTid.gif "Rigtig Tid")
 
 ### Opsumeret om Delay()
-Der er altså både fordele og ulemper ved at bruge Delay(). Fordelen er at den er let at bruge, simpel at forstå og virker med det samme. Ulemperne er at Delay() "slukker" Arduinoen når den kører, så du kan ikke eksekverer andre funktioner imens, samt at det ikke er en så præcis funktion til timing og styring af tid. Her kan man med fordel bruge Millis()
+Der er altså både fordele og ulemper ved at bruge Delay(). Fordelen er at den er let at bruge, simpel at forstå og virker med det samme. Ulemperne er at Delay() "slukker" Arduinoen når den kører, så du kan ikke eksekverer andre funktioner imens, samt at det ikke er en så præcis funktion til timing og styring af tid. Her kan man med fordel bruge Millis().
 
 ## Millis()
 ### Generelt
+Millis() er en lidt mere kompliceret funktion ifht. Delay(), men den åbner også op for flere muligheder i dit program. Millis() er en funktion der returnere et tal afhængig af hvor mange millisekunder der er gået siden Arduinoen blev tændt. F.eks vil variablen let tid = millis() være 0 når Arduinoen bliver tændt, og 10.000 efter 10 sekunder. Jo længere tid Ardunioen er tændt, jo højere et tal vil Millis() returnere. Efter 1 minut vil millis() returnere 60.000 (1000\*60), efter 1 time 3.600.000 (1000\*60\*60), efter 1 døgn 86.400.000 (1000\*60\*60\*24) og efter 50 dage 4.320.000.000 (1000\*60\*60\*24\*50). Afhængig af hvor lang tid din Arduino skal køre så ender Millis() med at returnere nogle meget høje tal. Efter 50 dage bliver tallet så højt at Arduinoen bliver nødt til at lave noget der hedder *Overflow*. 
+
+### Overflow
+Overflow er noget der sker når en variabel får en talværdi der er så stor at den fylder for meget på Arduinoen. Hvis tallet bliver nået overflower det, hvilket betyder at variablen vender tilbage til 0. Da vi ønsker at Arduinoen skal køre så lang tid som muligt uden at Millis() skal lave et Overflow skal variablen gemmes som datatypen *Unsigned Long*.
+*Unsigned* betyder at tallet kun kan være positivt. Dette betyder at Arduinoen kan gemme et højere tal, da minus-tal ikke skal medregnes, og tiden aldrig bliver returneret som et minus-tal. Det højeste tal der kan gemmes i en Unsigned Long variabel er 4.294.967.295, som svarer til ca. 50 dage før at millis() variablen vil blive så høj at den vil lave et *Overflow*. Overflow gør at Millis variablen går forbi 4.294.967.295 og så vender tilbage til 0 og starter derfra igen.
+
+### Millis() i praksis
+
