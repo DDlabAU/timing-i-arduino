@@ -48,7 +48,7 @@ Grundlæggende fungerer det ved at du laver en variabel (*int period*) der speci
 I void loop() funktionen bliver der så tilføjet et if statement der tjekker hvis Arduinoens millis() værdi er højere end hvad tidspunktet er nu plus intervallet. 
 
 **Dvs. at:**
-- Efter Arduinoen har kørt 0 sekunder hedder ifstatementet: if(0 > 0 + 1000) - Derfor aktiverer det ikke.
+- Efter Arduinoen har kørt 0 sekunder hedder if-statementet: if(0 > 0 + 1000) - Derfor aktiverer det ikke.
 - Efter Arduinen har kørt 1 sekund hedder if-statementet: if(1000 > 0 + 1000) - Derfor aktiverer det. Her bliver time_now til den nuværende millis()-værdi. 
 - Efter Arduinoen har kørt 1½ sekund hedder if-statementet: if(1500 > 1000 + 1000) - Derfor aktiverer det ikke.
  
