@@ -13,7 +13,7 @@ Der er altså et ujævnt forhold mellem Arduinoens tid den faktiske tid. Et abst
 
 ![alt text](https://github.com/DDlabAU/Timing-i-Arduino/blob/master/tid/ArduinoTid.gif "Arduino Tid") ![alt text](https://github.com/DDlabAU/Timing-i-Arduino/blob/master/tid/RigtigTid.gif "Rigtig Tid")
 
-### Opsumeret om Delay()
+### Opsummeret om Delay()
 Der er altså både fordele og ulemper ved at bruge Delay(). Fordelen er at den er let at bruge, simpel at forstå og virker med det samme. Ulemperne er at Delay() "slukker" Arduinoen når den kører, så du kan ikke eksekverer andre funktioner imens, samt at det ikke er en så præcis funktion til timing og styring af tid. Her kan man med fordel bruge Millis().
 
 ## Millis()
