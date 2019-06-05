@@ -24,5 +24,38 @@ Millis() er en lidt mere kompliceret funktion ifht. Delay(), men den åbner ogs�
 Overflow er noget der sker når en variabel får en talværdi der er så stor at den fylder for meget på Arduinoen. Hvis tallet bliver nået overflower det, hvilket betyder at variablen vender tilbage til 0. Da vi ønsker at Arduinoen skal køre så lang tid som muligt uden at Millis() skal lave et Overflow skal variablen gemmes som datatypen *Unsigned Long*.
 *Unsigned* betyder at tallet kun kan være positivt. Dette betyder at Arduinoen kan gemme et højere tal, da minus-tal ikke skal medregnes, og tiden aldrig bliver returneret som et minus-tal. Det højeste tal der kan gemmes i en Unsigned Long variabel er 4.294.967.295, som svarer til ca. 50 dage før at millis() variablen vil blive så høj at den vil lave et *Overflow*. Overflow gør at Millis variablen går forbi 4.294.967.295 og så vender tilbage til 0 og starter derfra igen.
 
-### Millis() i praksis
+### Sådan bruger du Millis() til at lave interval / Delay
+For at lave et interval med Millis() kan du bruge millisBasic.ino koden der er lagt ind i dette repository. 
+
+```
+int period = 1000;
+unsigned long time_now = 0;
+
+void setup() {
+    Serial.begin(115200);
+}
+ 
+void loop() {
+    if(millis() > time_now + period){
+        time_now = millis();
+        Serial.println("Hello");
+    }
+}
+```
+
+Koden skriver "Hello" i konsollen 1 gang hvert sekund.
+Grundlæggende fungerer det ved at du laver en variabel (*int period*) der specificerer hvor lang tid intervallet skal være på. I eksemplet er denne på 1000 milisekunder, altså 1 sekund. Derefter laver du en variabel til at gemme millis() værdien (*unsigned long time_now = 0*). 
+I void loop() funktionen bliver der så tilføjet et if statement der tjekker hvis Arduinoens millis() værdi er højere end hvad tidspunktet er nu plus intervallet. 
+
+**Dvs. at:**
+- Efter Arduinoen har kørt 0 sekunder hedder ifstatementet: if(0 > 0 + 1000) - Derfor aktiverer det ikke.
+- Efter Arduinen har kørt 1 sekund hedder if-statementet: if(1000 > 0 + 1000) - Derfor aktiverer det. Her bliver time_now til den nuværende millis()-værdi. 
+- Efter Arduinoen har kørt 1½ sekund hedder if-statementet: if(1500 > 1000 + 1000) - Derfor aktiverer det ikke.
+ 
+ Den ovenstående kode kan du også bruge til at lave mere præcis timing, så du kommer udenom at Delay() forskyder tiden. 
+ 
+Millis() åbner op for et større mulighedsrum i din kode og er en super god funktion at få ind under huden. Det tager lidt tid at vende sig til at tænke i Arduinoens tidslighed. Vi håber denne guide har været med til at belyse Millis() funktionen lidt, og at du er en smule mindre forvirret nu.
+ 
+ [!alt text](https://github.com/DDlabAU/Timing-i-Arduino/blob/master/tid/tid.gif)
+
 
