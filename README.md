@@ -56,6 +56,6 @@ I void loop() funktionen bliver der så tilføjet et if statement der tjekker hv
  
 Millis() åbner op for et større mulighedsrum i din kode og er en super god funktion at få ind under huden. Det tager lidt tid at vende sig til at tænke i Arduinoens tidslighed. Vi håber denne guide har været med til at belyse Millis() funktionen lidt, og at du er en smule mindre forvirret nu.
  
- [!alt text](https://github.com/DDlabAU/Timing-i-Arduino/blob/master/tid/tid.gif)
+ ![alt text](https://github.com/DDlabAU/Timing-i-Arduino/blob/master/tid/tid.gif)
 
 
