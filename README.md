@@ -1,5 +1,5 @@
 # Timing-i-Arduino
-Denne guide forklarer forskellen mellen *Millis()* og *Delay()* funktionen i arduino, samt hjælper med hvordan man kan bruge millis() til at lave forsinkelser i koden der ikke timeouter arduinoen.
+Denne guide forklarer forskellen mellen ´Millis()´ og 'Delay()' funktionen i arduino, samt hjælper med hvordan man kan bruge millis() til at lave forsinkelser i koden der ikke timeouter arduinoen.
 
 ## Delay()
 ### Generelt
